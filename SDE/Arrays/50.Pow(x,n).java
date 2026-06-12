@@ -144,3 +144,65 @@ class Solution {
         return half * half * x;
     }
 }
+/*Even More Optimized (Iterative Binary Exponentiation)
+
+This avoids recursion stack space.
+*/
+class Solution {
+
+    /*
+    Approach Name:
+    Iterative Binary Exponentiation
+
+    Idea:
+
+    Use binary representation of exponent.
+
+    If current bit is 1:
+    Multiply answer by current power.
+
+    Square the base each step.
+
+    Example:
+
+    n = 10
+
+    Binary:
+
+    1010
+
+    Time Complexity:
+    O(log n)
+
+    Space Complexity:
+    O(1)
+
+    Why Better?
+
+    Eliminates recursion stack.
+    */
+
+    public double myPow(double x, int n) {
+
+        long N = n;
+
+        if (N < 0) {
+            x = 1.0 / x;
+            N = -N;
+        }
+
+        double ans = 1.0;
+
+        while (N > 0) {
+
+            if ((N & 1) == 1) {
+                ans *= x;
+            }
+
+            x *= x;
+            N >>= 1;
+        }
+
+        return ans;
+    }
+}
