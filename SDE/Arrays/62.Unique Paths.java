@@ -421,5 +421,3 @@ class Solution {
         return a[n - 1];
     }
 }
-
-this approach?
