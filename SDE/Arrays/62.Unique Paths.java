@@ -283,3 +283,143 @@ class Solution {
         return (int) answer;
     }
 }
+/* Another approach
+Space Optimized Dynamic Programming (1D DP)
+
+    Idea:
+
+    In the 2D DP solution:
+
+    dp[i][j] = dp[i-1][j] + dp[i][j-1]
+
+    We observe that to compute the current cell,
+    we only need:
+
+    1. Value from the row above.
+    2. Value from the left cell.
+
+    Therefore storing the entire m x n matrix
+    is unnecessary.
+
+    We can use a single array.
+
+    --------------------------------------------------
+    Dry Run
+    --------------------------------------------------
+
+    m = 3
+    n = 7
+
+    Initial DP Array:
+
+    [1,1,1,1,1,1,1]
+
+    Row 2:
+
+    j=1
+
+    [1,2,1,1,1,1,1]
+
+    j=2
+
+    [1,2,3,1,1,1,1]
+
+    j=3
+
+    [1,2,3,4,1,1,1]
+
+    j=4
+
+    [1,2,3,4,5,1,1]
+
+    j=5
+
+    [1,2,3,4,5,6,1]
+
+    j=6
+
+    [1,2,3,4,5,6,7]
+
+    Row 3:
+
+    [1,3,6,10,15,21,28]
+
+    Answer:
+
+    28
+
+    --------------------------------------------------
+    Why Does This Work?
+    --------------------------------------------------
+
+    a[j]
+
+    stores:
+
+    Number of ways coming from TOP.
+
+    a[j-1]
+
+    stores:
+
+    Number of ways coming from LEFT.
+
+    Therefore:
+
+    a[j] = a[j] + a[j-1]
+
+    which is exactly:
+
+    dp[i][j] =
+    dp[i-1][j] + dp[i][j-1]
+
+    --------------------------------------------------
+    Time Complexity:
+    O(m * n)
+
+    We visit every cell once.
+
+    --------------------------------------------------
+    Space Complexity:
+    O(n)
+
+    Only one row is stored.
+
+    --------------------------------------------------
+    Is This Optimal?
+    --------------------------------------------------
+
+    For Dynamic Programming:
+
+    Yes.
+
+    Space optimized from:
+
+    O(m*n)
+
+    to
+
+    O(n)
+    */
+import java.util.Arrays;
+
+class Solution {
+    public int uniquePaths(int m, int n) {
+        // Guard clause for 0-sized grids
+        if (m == 0 || n == 0) return 0;
+        
+        int[] a = new int[n];
+        Arrays.fill(a, 1);
+        
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                // a[j] (top) + a[j-1] (left)
+                a[j] += a[j - 1]; 
+            }
+        }
+        
+        return a[n - 1];
+    }
+}
+
+this approach?
