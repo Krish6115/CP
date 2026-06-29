@@ -1,4 +1,4 @@
-Problem Statement (Paraphrased)
+/*Problem Statement (Paraphrased)
 
 You are given an array of meeting time intervals where each interval is represented as [start, end].
 
@@ -28,7 +28,7 @@ Input
 Output
 
 1
-Java Solution (Two Pointers)
+Java Solution (Two Pointers) */
 import java.util.*;
 
 class Solution {
@@ -66,14 +66,14 @@ class Solution {
         return maxRooms;
     }
 }
-Time Complexity
+/* Time Complexity
 O(n log n) (sorting)
 Space Complexity
 O(n)
 Another Common Solution (Min Heap)
 
 This version is also frequently asked in interviews.
-
+*/
 import java.util.*;
 
 class Solution {
